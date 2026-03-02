@@ -148,7 +148,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         .ok_or("Could not open db folder")?
         .join("test_db")
         .to_path_buf();
-    let file_name = "test.csv".to_string();
+    let file_name = "test_db.csv".to_string();
     let file = OpenOptions::new()
         .read(true)
         .append(true)

@@ -1,4 +1,3 @@
-// #![allow(unused)]
 use std::env::{current_dir};
 use std::fs::{rename, File, OpenOptions};
 use std::io::{BufRead, BufReader, Read, Seek, SeekFrom, Write};
@@ -7,10 +6,6 @@ use std::string::ToString;
 use clap::{Parser, Subcommand};
 
 const TMP_NAME: &str = "temp_file_name.tmp";
-// const RED_START: &str = "\x1b[31m";
-// const GREEN_START: &str = "\x1b[32m";
-// const COLOR_END: &str = "\x1b[0m";
-
 #[derive(Debug, Parser)]
 struct Options {
     #[command(subcommand)]
@@ -148,14 +143,12 @@ impl App {
 }
 fn main() -> Result<(), Box<dyn std::error::Error>> {
 
-    // let current_dir = current_exe()?
     let current_dir = current_dir()?
         .parent()
         .ok_or("Could not open db folder")?
         .join("test_db")
         .to_path_buf();
     let file_name = "test.csv".to_string();
-    // let file = open_file(current_dir.join(&file_name))?;
     let file = OpenOptions::new()
         .read(true)
         .append(true)
@@ -168,10 +161,6 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     app.run(options.command)?;
     Ok(())
 }
-
-// fn open_file(path: PathBuf) -> std::io::Result<File> {
-//     OpenOptions::new().read(true).append(true).open(path)
-// }
 
 /*
 
